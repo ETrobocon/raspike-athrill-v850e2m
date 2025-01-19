@@ -198,11 +198,32 @@ endif
 CDEFS := $(CDEFS) @(CDEFS)
 INCLUDES := -I. -I$(SRCDIR)/include $(INCLUDES) -I$(SRCDIR)
 # TODO: ev3api/src has header that is included from drivers
-INCLUDES := -I. -I$(SRCDIR)/include $(INCLUDES) -I$(SRCDIR) -I$(ATHRILLDIR)/athrill/apl/include -I../common/ev3api/include \
-	-I../common/ev3api/src
+INCLUDES := -I. -I$(SRCDIR)/include $(INCLUDES) -I$(SRCDIR) -I$(ATHRILLDIR)/athrill/apl/include -I../common/spikeapi/include \
+	-I../common/spikeapi/src
 LDFLAGS := $(LDFLAGS) @(LDFLAGS)
 LIBS := $(LIBS) $(CXXLIBS)
 CFLAGS = $(COPTS) $(CDEFS) $(INCLUDES)
+
+#
+# For SPIKE api
+#
+
+
+USE_RASPIKE_ART=1
+LIBRASPIKE-ART_DIR=../../libraspike-art
+
+LIBPYBRICKS_DIR=$(LIBRASPIKE-ART_DIR)/external/libpybricks
+
+INCLUDES += -I$(LIBRASPIKE-ART_DIR)/drivers/include \
+	-I$(LIBRASPIKE-ART_DIR)/drivers/include/spike \
+	-I$(LIBRASPIKE-ART_DIR)/drivers/include/spike/pup \
+	-I$(LIBRASPIKE-ART_DIR)/drivers/include/spike/hub \
+	-I$(LIBRASPIKE-ART_DIR)/drivers \
+	-I$(LIBPYBRICKS_DIR)/lib/pbio/include/pbio \
+	-I$(LIBPYBRICKS_DIR)/lib/pbio/include \
+	-I$(LIBRASPIKE-ART_DIR)/include
+
+CFLAGS += -DUSE_RASPIKE_ART
 
 #
 #  アプリケーションプログラムに関する定義

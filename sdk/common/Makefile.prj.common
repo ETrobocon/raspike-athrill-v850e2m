@@ -25,7 +25,8 @@ INCLUDES += -I$(EV3RT_SDK_COM_DIR)
 #
 # EV3RT C Language API
 #
-ev3rt_sdk_api_abs_dir := $(this_abs_dir)/ev3api
+#ev3rt_sdk_api_abs_dir := $(this_abs_dir)/ev3api
+ev3rt_sdk_api_abs_dir := $(this_abs_dir)/spikeapi
 EV3RT_SDK_API_DIR := $(call get_relpath, $(ev3rt_sdk_api_abs_dir), $(PWD))
 APPL_DIRS += $(EV3RT_SDK_API_DIR)/src
 INCLUDES += -I$(EV3RT_SDK_API_DIR) -I$(EV3RT_SDK_API_DIR)/include
