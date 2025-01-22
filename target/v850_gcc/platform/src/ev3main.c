@@ -121,7 +121,6 @@ void ev3_main_task(intptr_t exinf) {
 	is_initialized = true;
 
 	brick_misc_command(MISCCMD_SET_LED, TA_LED_GREEN);
-
 #if 0 // Legacy code
     initialize_analog_dri();
     initialize_uart_dri();

@@ -34,7 +34,7 @@ void _app_init_task(intptr_t unused) {
 	// Initialize APIs
 	_initialize_ev3api_lcd();
 #endif
-	_initialize_ev3api_motor();
+//	_initialize_ev3api_motor();
 	_initialize_ev3api_newlib();
 	_initialize_ev3api_sensor();
 

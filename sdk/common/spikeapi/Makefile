@@ -8,8 +8,15 @@ APPL_COBJS += ev3api.o \
 	ev3api_fs.o \
 	ev3api_speaker.o \
 	ev3api_lcd.o \
-	ev3api_motor.o \
 	ev3api_newlib.o \
-	ev3api_sensor.o
+	ev3api_sensor.o	\
+	raspike_device.o \
+	raspike_color.o	\
+	raspike_motor.o	\
+
+
+
+#	ev3api_motor.o \
+
 
 CFG_TABS += --api-table $(EV3RT_SDK_API_DIR)/ev3api.csv
