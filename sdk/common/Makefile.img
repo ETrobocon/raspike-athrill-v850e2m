@@ -68,9 +68,9 @@ ifeq ($(SRCLANG),c)
 endif
 ifeq ($(SRCLANG),c++)
 	USE_CXX = true
-	CXXOPTS += -std=c99
 	CXXOPTS += -DSYSLOG_IMPLEMENT_AS_PRINTF
-	CXXLIBS = -lstdc++ -lm -lc -lgcc -std=c++11 
+	CXXOPTS += -std=c++11 
+	CXXLIBS += -lstdc++ -lm -lc -lgcc -std=c++11
 #	CXXRTS = cxxrt.o newlibrt.o
 endif
 
@@ -216,10 +216,7 @@ LIBPYBRICKS_DIR=$(LIBRASPIKE-ART_DIR)/external/libpybricks
 
 INCLUDES += -I$(LIBRASPIKE-ART_DIR)/drivers/include \
 	-I$(LIBRASPIKE-ART_DIR)/drivers/include/spike \
-	-I$(LIBRASPIKE-ART_DIR)/drivers/include/spike/pup \
-	-I$(LIBRASPIKE-ART_DIR)/drivers/include/spike/hub \
 	-I$(LIBRASPIKE-ART_DIR)/drivers \
-	-I$(LIBPYBRICKS_DIR)/lib/pbio/include/pbio \
 	-I$(LIBPYBRICKS_DIR)/lib/pbio/include \
 	-I$(LIBRASPIKE-ART_DIR)/include
 
@@ -799,10 +796,10 @@ $(APPL_COBJS:$(OBJDIR)/%.o=%.s): %.s: %.c
 	$(CC) -S -o $@ $(CFLAGS) $(APPL_CFLAGS) $<
 
 $(APPL_CXXOBJS): $(OBJDIR)/%.o: %.cpp
-	$(CXX) -c -o $@ -MD -MP -MF $(DEPDIR)/$*.d $(CFLAGS) $(APPL_CFLAGS) $<
+	$(CXX) $(CXXOPTS) -c -o $@ -MD -MP -MF $(DEPDIR)/$*.d $(CFLAGS) $(APPL_CFLAGS) $<
 
 $(APPL_CXXOBJS:$(OBJDIR)/%.o=%.s): %.s: %.cpp
-	$(CXX) -S -o $@ $(CFLAGS) $(APPL_CFLAGS) $<
+	$(CXX) $(CXXOPTS) -S -o $@ $(CFLAGS) $(APPL_CFLAGS) $<
 
 $(APPL_ASMOBJS): $(OBJDIR)/%.o: %.S
 	$(call print_cmd, "CC", $<)
@@ -821,11 +818,11 @@ $(OBJDIR)/%.o: %.c
 
 $(OBJDIR)/%.o: %.cpp
 	@echo "*** Default compile rules should not be used."
-	$(CXX) -c -o $@ -MD -MP -MF $(DEPDIR)/$*.d $(CFLAGS) $<
+	$(CXX) $(CXXOPTS) -c -o $@ -MD -MP -MF $(DEPDIR)/$*.d $(CFLAGS) $<
 
 %.s: %.cpp
 	@echo "*** Default compile rules should not be used."
-	$(CXX) -S -o $@ $(CFLAGS) $<
+	$(CXX) $(CXXOPTS) -S -o $@ $(CFLAGS) $<
 
 $(OBJDIR)/%.o: %.S
 	@echo "*** Default compile rules should not be used."

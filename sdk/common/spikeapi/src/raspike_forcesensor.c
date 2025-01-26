@@ -2,9 +2,9 @@
 #include "raspike_device.h"
 #include "ev3_vdev.h"
 #include "sil.h"
-#include "color.h"
-#include "error.h"
-#include "forcesensor.h"
+#include "pbio/color.h"
+#include "pbio/error.h"
+#include "pup/forcesensor.h"
   
 pup_device_t *pup_force_sensor_get_device(pbio_port_id_t port)
 {

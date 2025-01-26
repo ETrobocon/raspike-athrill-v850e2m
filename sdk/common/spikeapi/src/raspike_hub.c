@@ -5,11 +5,11 @@
 #include "raspike_device.h"
 #include "ev3_vdev.h"
 #include "sil.h"
-#include "color.h"
-#include "error.h"
+#include "pbio/color.h"
+#include "pbio/error.h"
 #include "hub/button.h"
-#include "battery.h"
-#include "speaker.h"
+#include "hub/battery.h"
+#include "hub/speaker.h"
 
 /* Battery */
 

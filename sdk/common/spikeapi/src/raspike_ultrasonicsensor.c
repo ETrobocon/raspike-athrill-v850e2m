@@ -2,7 +2,7 @@
 #include "raspike_device.h"
 #include "ev3_vdev.h"
 #include "sil.h"
-#include "ultrasonicsensor.h"
+#include "pup/ultrasonicsensor.h"
   
 pup_device_t *pup_ultrasonic_sensor_get_device(pbio_port_id_t port)
 {

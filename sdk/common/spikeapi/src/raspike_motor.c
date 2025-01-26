@@ -4,7 +4,7 @@
 #include "raspike_device.h"
 #include "ev3_vdev.h"
 #include "sil.h"
-#include "motor.h"
+#include "pup/motor.h"
 
 
 

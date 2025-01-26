@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "raspike_device.h"
-#include "colorsensor.h"
+#include "pup/colorsensor.h"
 #include "ev3_vdev.h"
 #include "sil.h"
 
