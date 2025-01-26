@@ -16,7 +16,7 @@ APPL_COBJS += ev3_svc.o
 APPL_COBJS += driver_interface_brick.o
 APPL_COBJS += brick_dri.o
 APPL_COBJS += uart_dri.o
-APPL_COBJS += motor_dri.o
+#APPL_COBJS += motor_dri.o
 APPL_COBJS += gpio_dri.o
 APPL_COBJS += athrill_serial_driver.o
 

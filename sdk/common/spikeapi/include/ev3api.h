@@ -19,6 +19,7 @@ extern "C" {
 /**
  * EV3 API
  */
+#if 0
 #include "../src/ev3api_button.h"
 #include "../src/ev3api_fs.h"
 #include "../src/ev3api_lcd.h"
@@ -28,6 +29,7 @@ extern "C" {
 #include "../src/ev3api_speaker.h"
 #include "../src/ev3api_rtos.h"
 #include "../src/ev3api_battery.h"
+#endif
 
 /**
  * Kernel object ID

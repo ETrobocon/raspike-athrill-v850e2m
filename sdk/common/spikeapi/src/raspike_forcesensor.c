@@ -1,36 +1,52 @@
 #include <stdio.h>
-#include "raspike_protocol_api.h"
-#include "raspike_protocol_com.h"
-#include "raspike_internal.h"
+#include "raspike_device.h"
+#include "ev3_vdev.h"
+#include "sil.h"
+#include "color.h"
+#include "error.h"
 #include "forcesensor.h"
-
-DECLARE_DEVICE_TYPE_IN_FILE(RP_CMD_TYPE_FORCE)
   
 pup_device_t *pup_force_sensor_get_device(pbio_port_id_t port)
 {
-  GET_DEVICE_COMMON(pup_device_t);
+  pup_device_t  *pdev = create_device_by_portid(port,DEVICE_TYPE_FORCE);
 
+  return pdev;    
 }
-
 
 
 float pup_force_sensor_force(pup_device_t *pdev)
 {
-  GET_AND_RET_SENSOR_COMMON(float,RP_FORCESENSOR_INDEX_FRC);
+	uint32_t data ;
+	uint32_t *addr;
+
+  addr = (uint32_t *)EV3_SENSOR_ADDR_TOUCH_0;
+
+	data = sil_rew_mem(addr);
+
+  return (float)data;
 }
 
 float pup_force_sensor_distance(pup_device_t *pdev)
 {
-  GET_AND_RET_SENSOR_COMMON(float,RP_FORCESENSOR_INDEX_DST);
+  // Not supported
+  return 0.0;
+
 }
 
 bool pup_force_sensor_pressed(pup_device_t *pdev, float force)
 {
-  return ( pup_force_sensor_force(pdev) >= force );
+  return pup_force_sensor_touched(pdev);
 
 }
 
 bool pup_force_sensor_touched(pup_device_t *pdev)
 {
-  GET_AND_RET_SENSOR_COMMON(bool,RP_FORCESENSOR_INDEX_TCH);
+	uint32_t data ;
+	uint32_t *addr;
+
+  addr = (uint32_t *)EV3_SENSOR_ADDR_TOUCH_0;
+
+	data = sil_rew_mem(addr);
+
+  return data > 0;
 }

@@ -36,7 +36,7 @@ void _app_init_task(intptr_t unused) {
 #endif
 //	_initialize_ev3api_motor();
 	_initialize_ev3api_newlib();
-	_initialize_ev3api_sensor();
+//	_initialize_ev3api_sensor();
 
 	// Call C++ global constructors Ref: http://wiki.osdev.org/Calling_Global_Constructors
 	extern func_ptr __init_array_start[0], __init_array_end[0];

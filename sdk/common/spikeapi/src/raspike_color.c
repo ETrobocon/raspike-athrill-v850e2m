@@ -25,7 +25,6 @@ pup_color_hsv_t pup_color_sensor_color(pup_device_t *pdev, bool surface)
 
 pup_color_rgb_t pup_color_sensor_rgb(pup_device_t *pdev)
 {
-  int32_t data;
   const uint32_t *addr;
   pup_color_rgb_t rgb;
   ENSURE_VALID_DEVICE(pdev);
@@ -43,7 +42,6 @@ pup_color_rgb_t pup_color_sensor_rgb(pup_device_t *pdev)
 
 pup_color_hsv_t pup_color_sensor_hsv(pup_device_t *pdev, bool surface)
 {
-  int32_t data;
   const uint32_t *addr;
   pup_color_hsv_t hsv;
   ENSURE_VALID_DEVICE(pdev);
@@ -66,6 +64,7 @@ int32_t pup_color_sensor_reflection(pup_device_t *pdev)
 
   addr = (const uint32_t *)EV3_SENSOR_ADDR_REFLECT(0);
   data = (int32_t)sil_rew_mem(addr);
+
   return data;
 
 }

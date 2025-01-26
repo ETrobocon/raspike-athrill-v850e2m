@@ -4,7 +4,7 @@
 #include <errno.h>
 
 #include "athrill_syscall.h"
-#include "ev3api.h"
+#include "spikeapi.h"
 
 unsigned int athrill_device_func_call __attribute__ ((section(".athrill_device_section")));
 

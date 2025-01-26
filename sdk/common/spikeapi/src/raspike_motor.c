@@ -99,6 +99,7 @@ pbio_error_t pup_motor_brake(pup_motor_t *motor)
   pup_device_t *pdev = (pup_device_t*)motor;
   ENSURE_VALID_DEVICE(pdev);
   pdev->power = 0;
+  pup_motor_set_power(motor, 0);
   sil_wrw_mem((uint32_t*)EV3_MOTOR_ADDR_INX(pdev->port_id+EV3_MOTOR_INX_STOP_TOP), false);  
   return PBIO_SUCCESS;
 }
@@ -108,6 +109,7 @@ pbio_error_t pup_motor_hold(pup_motor_t *motor)
   pup_device_t *pdev = (pup_device_t*)motor;
   ENSURE_VALID_DEVICE(pdev);
   pdev->power = 0;
+  pup_motor_set_power(motor, 0);
   sil_wrw_mem((uint32_t*)EV3_MOTOR_ADDR_INX(pdev->port_id+EV3_MOTOR_INX_STOP_TOP), true);  
   return PBIO_SUCCESS;
 }
