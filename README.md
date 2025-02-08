@@ -18,7 +18,7 @@ https://github.com/ETrobocon/etrobo
 作成されたetrobo環境の直下に本リポジトリをcloneします(ev3rt-athrill-v850e2mやworkspaceなどがあるディレクトリと同じ並び)。
 以下、$はコマンドプロンプトとです。
 
-```$ git clone https://github.com/ETrobocon/raspike-athrill-v850e2m.git```
+```$ git clone --recursive https://github.com/ETrobocon/raspike-athrill-v850e2m.git```
 
 作成されたraspike-athrill-v850e2m/sdk/workspaceの下に移動します。
 
