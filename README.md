@@ -105,7 +105,14 @@ https://spike-rt.github.io/spike-rt/en/html/index.html
 | |pup_ultrasonic_sensor_light_off| |×| |
 
 
+## Windows+WSLでのIP Addressの設定
+Windows環境ではWindowsとWSL間で通信させるためにsdk/common/device_config.txtのIPアドレスを修正する必要があります。
 
+```ip route | grep 'default via' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'```
+
+で取得できるIPを
+DEBUG_FUNC_VDEV_TX_IPADDR
+として設定する必要があります。
 
 ## Note
 
