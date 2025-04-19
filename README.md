@@ -117,7 +117,7 @@ DEBUG_FUNC_VDEV_TX_IPADDRに
 で取得できるIPを
 DEBUG_FUNC_VDEV_RX_IPADDRに
 
-設定する必要があります。
+に設定する必要があります。
 
 ## Note
 
