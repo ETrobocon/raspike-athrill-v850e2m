@@ -80,6 +80,9 @@ pbio_error_t pup_motor_set_power(pup_motor_t *motor, int power)
       power = -power;
   }
   sil_wrw_mem((uint32_t*)EV3_MOTOR_ADDR_INX(pdev->port_id+EV3_MOTOR_INX_POWER_TOP), power);
+  if ( power == 0 ) {
+    sil_wrw_mem((uint32_t*)EV3_MOTOR_ADDR_INX(pdev->port_id+EV3_MOTOR_INX_STOP_TOP), true);  
+  } 
   return PBIO_SUCCESS;
 }
 
@@ -89,6 +92,7 @@ pbio_error_t pup_motor_stop(pup_motor_t *motor)
   ENSURE_VALID_DEVICE(pdev);
   pdev->power = 0;
   pup_motor_set_power(motor, 0);
+  sil_wrw_mem((uint32_t*)EV3_MOTOR_ADDR_INX(pdev->port_id+EV3_MOTOR_INX_STOP_TOP), true);  
   return PBIO_SUCCESS;
 
 }
@@ -96,22 +100,14 @@ pbio_error_t pup_motor_stop(pup_motor_t *motor)
 
 pbio_error_t pup_motor_brake(pup_motor_t *motor)
 {
-  pup_device_t *pdev = (pup_device_t*)motor;
-  ENSURE_VALID_DEVICE(pdev);
-  pdev->power = 0;
-  pup_motor_set_power(motor, 0);
-  sil_wrw_mem((uint32_t*)EV3_MOTOR_ADDR_INX(pdev->port_id+EV3_MOTOR_INX_STOP_TOP), false);  
-  return PBIO_SUCCESS;
+  // Same as stop
+  return pup_motor_stop(motor);
 }
 
 pbio_error_t pup_motor_hold(pup_motor_t *motor)
 {
-  pup_device_t *pdev = (pup_device_t*)motor;
-  ENSURE_VALID_DEVICE(pdev);
-  pdev->power = 0;
-  pup_motor_set_power(motor, 0);
-  sil_wrw_mem((uint32_t*)EV3_MOTOR_ADDR_INX(pdev->port_id+EV3_MOTOR_INX_STOP_TOP), true);  
-  return PBIO_SUCCESS;
+  // Same as stop
+  return pup_motor_stop(motor);
 }
 
 bool pup_motor_is_stalled(pup_motor_t *motor)
