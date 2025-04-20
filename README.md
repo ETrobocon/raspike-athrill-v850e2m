@@ -8,9 +8,9 @@ ETロボコン用Fork(SPIKE APIバージョン)
 https://github.com/toppers/ev3rt-athrill-v850e2m
 をETロボコンで使用するシミュレータ用にSPIKE-API対応したものです。
 
-# 使い方
+# コンパイル方法
 (2025/2/2時点。etrobo環境への統合後は変更になる予定です）
-ETロボコン実行委員会が提供しているetrobo環境を使用するのが簡単です。
+ETロボコン実行委員会が提供しているetrobo環境を使用するのが簡単です。ただし、etrobo環境をアップデートした際にcloneしたraspike-athrill-v850e2mディレクトリが削除されることがあるので、バックアップを取るようにしてください。
 
 https://github.com/ETrobocon/etrobo
 にしたがって、ETロボコンの環境を作成してください。
@@ -28,6 +28,38 @@ https://github.com/ETrobocon/etrobo
 
 その後、サンプルプログラム(sample_c5_spike)をコンパイルします。
 ```$ make img=sample_c5_spike```
+
+# 動作のための設定
+
+## device_config.txtの設定
+
+sdk//common/device_config.txt
+
+で各種の設定ができます。通常はそのままで使用できますが、変更が必要な場合があります。
+主なものを記載します。
+
+|名前|デフォルト値|意味|
+|:----|:----|:----|
+|DEBUG_FUNC_VDEV_TX_PORTNO|54001|シミュレータがコマンドを受け付けるポート番号|
+|DEBUG_FUNC_VDEV_TX_IPADDR|127.0.0.1|シミュレータがコマンドを受け付けるIPアドレス|
+|DEBUG_FUNC_VDEV_RX_PORTNO|54002|シミュレータからセンサーなどの値を受け取る際に使用するポート番号|
+|DEBUG_FUNC_VDEV_RX_IPADDR|127.0.0.1|シミュレータからセンサーなどの値を受け取る際に使用するIPアドレス|
+
+
+### Windows+WSLでのIP Addressの設定
+Windows環境ではWindowsとWSL間で通信させるために通信ポートの設定を修正する必要があります。
+
+```ip route | grep 'default via' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'```
+
+で取得できるIPを
+DEBUG_FUNC_VDEV_TX_IPADDRに
+
+```ip addr show eth0 | grep "inet\ " | awk '{print $2}' | sed -E 's/^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}).*$/\1/'```
+
+で取得できるIPを
+DEBUG_FUNC_VDEV_RX_IPADDRに
+に設定する必要があります。
+
 
 make startで起動します。
 ```$　make start```
@@ -104,20 +136,18 @@ https://spike-rt.github.io/spike-rt/en/html/index.html
 | |pup_ultrasonic_sensor_light_on| |×| |
 | |pup_ultrasonic_sensor_light_off| |×| |
 
+## ポートの割り当て
+　本環境では下記の割り当てをサポートしています（実際にはモーター以外は任意のポートを使用できます）。
+|センサー/モータ|ポート|
+|:----|:----|
+|カラーセンサー|E|
+|左モータ|C|
+|右モータ|B|
+|アームモーター|A|
+|超音波センサー|F|
+|フォースセンサー|D|
 
-## Windows+WSLでのIP Addressの設定
-Windows環境ではWindowsとWSL間で通信させるためにsdk/common/device_config.txtのIPアドレスを修正する必要があります。
 
-```ip route | grep 'default via' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'```
-
-で取得できるIPを
-DEBUG_FUNC_VDEV_TX_IPADDRに
-
-```ip addr show eth0 | grep "inet\ " | awk '{print $2}' | sed -E 's/^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}).*$/\1/'```
-で取得できるIPを
-DEBUG_FUNC_VDEV_RX_IPADDRに
-
-に設定する必要があります。
 
 ## Note
 
