@@ -31,6 +31,14 @@ https://github.com/ETrobocon/etrobo
 
 # 動作のための設定
 
+## athrill2へのパスの設定
+
+athrill2のあるディレクトリへのパスを通す必要があります。
+
+```export PATH=(etroboディレクトリへのパス)/athrill/bin/linux:${PATH}```
+
+として、パスを設定してください。
+
 ## device_config.txtの設定
 
 sdk//common/device_config.txt
