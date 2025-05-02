@@ -168,7 +168,7 @@ def ReadSymvalTable
     end
 
     symvalCsv = CSV.open(symvalTableFileName,
-						{ skip_blanks: true, skip_lines: /^#/ })
+						 skip_blanks: true, skip_lines: /^#/ )
     symvalCsv.each do |record|
       # 変数名
       if record[0].nil?
