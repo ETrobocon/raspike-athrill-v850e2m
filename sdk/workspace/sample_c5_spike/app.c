@@ -19,7 +19,7 @@ void main_task(intptr_t unused) {
   /* フォースセンサーが押下されるまで待機 */
   pup_device_t *force_sensor = pup_force_sensor_get_device(force_sensor_port);
   while (!pup_force_sensor_touched(force_sensor)) {
-    dly_tsk(10);
+    dly_tsk(10*1000);
   }
 
   /* LineTracerに構成を渡す */
