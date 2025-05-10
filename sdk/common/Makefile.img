@@ -68,6 +68,7 @@ ifeq ($(SRCLANG),c)
 endif
 ifeq ($(SRCLANG),c++)
 	USE_CXX = true
+	COPTS += -DSYSLOG_IMPLEMENT_AS_PRINTF
 	CXXOPTS += -DSYSLOG_IMPLEMENT_AS_PRINTF
 	CXXOPTS += -std=c++11 
 	CXXLIBS += -lstdc++ -lm -lc -lgcc -std=c++11
