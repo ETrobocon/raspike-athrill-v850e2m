@@ -200,7 +200,7 @@ CDEFS := $(CDEFS) @(CDEFS)
 INCLUDES := -I. -I$(SRCDIR)/include $(INCLUDES) -I$(SRCDIR)
 # TODO: ev3api/src has header that is included from drivers
 INCLUDES := -I. -I$(SRCDIR)/include $(INCLUDES) -I$(SRCDIR) -I$(ATHRILLDIR)/athrill/apl/include -I../common/spikeapi/include \
-	-I../common/spikeapi/src
+	-I../common/spikeapi/src -I../workspace/etroboc_common
 LDFLAGS := $(LDFLAGS) @(LDFLAGS)
 LIBS := $(LIBS) $(CXXLIBS)
 CFLAGS = $(COPTS) $(CDEFS) $(INCLUDES)
