@@ -32,7 +32,7 @@ public:
     
   /** 
    * 超音波センサで距離を測定する 
-   * @return 距離（単位：cm） 
+   * @return 距離（単位：mm） 
    */ 
   int32_t getDistance() const { 
     return pup_ultrasonic_sensor_distance(mDevice); 

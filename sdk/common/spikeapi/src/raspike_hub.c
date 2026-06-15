@@ -155,6 +155,36 @@ float hub_imu_get_temperature(void)
   // Not Supported
   return 0.0;
 }
+
+
+bool hub_imu_is_ready(void) {
+  // TODO:
+  // Not Supported
+  return true;
+}
+
+bool hub_imu_is_stationary(void) {
+  // TODO:
+  // Not Supported
+  return true;
+}
+
+void hub_imu_set_tilt(float angle) {
+  // TODO:
+  // Not Supported
+}
+
+float hub_imu_get_heading(void) {
+  // TODO:
+  // Not Supported
+  return 0.0;
+}
+
+void hub_imu_reset_heading(void) {
+  // TODO:
+  // Not Supported
+}
+
   
 /* Light */
 pbio_error_t hub_light_on_hsv(const pbio_color_hsv_t *hsv)
